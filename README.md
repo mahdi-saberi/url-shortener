@@ -42,3 +42,6 @@ You can [tweet me](https://twitter.com/amarpandey007) if you can't get it to wor
 Built with ♥ by Amar Prakash Pandey([@amarlearning](http://github.com/amarlearning)) under [MIT License](http://amarlearning.mit-license.org/) 
 
 You can find a copy of the License at [http://amarlearning.mit-license.org/](http://amarlearning.mit-license.org/)
+
+
+### adding redirect for codes
