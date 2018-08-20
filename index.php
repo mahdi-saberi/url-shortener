@@ -75,33 +75,6 @@ session_start();
         </div>
         <input type="submit" value="Go" class="submit">
     </form>
-	<div style='margin-top:10px'>
-		<table border='1px' cellspacing='2px' cellpadding='2px' style='direction:rtl'>
-			<thead>
-					<th>ردیف</th>
-					<th>آدرس</th>
-					<th>آدرس کوتاه</th>
-					<th>تعداد بازدید</th>
-			</thead>
-<?php
-				
-				
-    $rows = $urlShortener->getAllLinks();
-    while($row = $rows->fetch_object()){
-	    echo "
-<tr>
-	<td>{$row->id}</td>
-	<td>{$row->url}</td>
-	<td><a href='/{$row->code}'>{$row->code}</a></td>
-	<td>{$row->views}</td>
-</tr>
-";
-    }
-
-	
-?>
-		</table>
-	</div>
     <script>
       function toggle () {
         if (document.getElementById('myonoffswitch').checked) {
