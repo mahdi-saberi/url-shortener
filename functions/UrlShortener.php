@@ -1,4 +1,5 @@
 <?php
+	include_once("config.php");
 
 	class UrlShortener
   {
@@ -7,7 +8,7 @@
 
   	public function __construct()
   	{
-  		$this->db = new mysqli('{HOST_NAME}', '{USER_NAME}', '{USER_PASSWORD}', '{DB_NAME}');
+  		$this->db = new mysqli($GLOBALS['dburl'], $GLOBALS['user'], $GLOBALS['pass'], $GLOBALS['dbname']);
 
   		if ($this->db->connect_errno) {
   			header("Location: ../index.php?error=db");
@@ -100,11 +101,13 @@
   	{
   		$string = $this->db->real_escape_string(strip_tags(addslashes($string)));
   		$rows = $this->db->query("SELECT url FROM link WHERE code = '{$string}'");
-  		if ($rows->num_rows) {
-  			return $rows->fetch_object()->url;
+		if ($rows->num_rows) {
+			$url = $rows->fetch_object()->url;
+			$this->db->query("UPDATE link SET views=views+1 WHERE code = '{$string}'") or die('err1');
+			return $url;
   		} else {
-  			header("Location: index.php?error=dnp");
-  			die();
+  			//header("Location: index.php?error=dnp");
+  			return FALSE;
   		}
   	}
 
@@ -134,8 +137,17 @@
 
   	public function generateLinkForShortURL($uniqueCode = '')
   	{
-  		return "<a href='http://urls.ml/{$uniqueCode}'>http://urls.ml/{$uniqueCode}</a>";
-  	}
+  		return "<a href='http://localhost:91/{$uniqueCode}'>http://localhost:91/{$uniqueCode}</a>";
+	}
+
+	/**
+	 * Get all links data
+	 * @return database result pointer
+	 */
+
+	public function getAllLinks(){
+		return $this->db->query("SELECT * FROM link ORDER BY id DESC");	
+	}
 
 
   }
