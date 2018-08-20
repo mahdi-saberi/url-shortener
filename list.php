@@ -40,7 +40,7 @@ session_start();
 <tr>
 	<td>{$row->id}</td>
 	<td>{$row->url}</td>
-	<td><a href='/{$row->code}'>{$row->code}</a></td>
+	<td><a href='/?{$row->code}'>{$row->code}</a></td>
 	<td>{$row->views}</td>
 </tr>
 ";

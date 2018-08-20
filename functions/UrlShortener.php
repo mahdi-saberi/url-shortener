@@ -137,7 +137,7 @@
 
   	public function generateLinkForShortURL($uniqueCode = '')
   	{
-  		return "<a href='http://localhost:91/{$uniqueCode}'>http://localhost:91/{$uniqueCode}</a>";
+  		return "<a href='http://{$GLOBALS['domain']}/?{$uniqueCode}'>http://localhost:91/{$uniqueCode}</a>";
 	}
 
 	/**

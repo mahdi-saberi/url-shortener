@@ -5,13 +5,14 @@ error_reporting(-1);
 require_once 'functions/UrlShortener.php';
 
 $urlShortener = new UrlShortener();
-
+//print_r($_SERVER);
+//die();
 if($_SERVER['REQUEST_URI'] != '/' && $_SERVER['REQUEST_URI'] != '/index.php') {
 
     $errors = false;
     $insertCustom = false;
 
-    $url = $urlShortener->getOrignalURL(substr($_SERVER['REQUEST_URI'],1));
+    $url = $urlShortener->getOrignalURL(substr($_SERVER['REQUEST_URI'],2));
     if($url)
 	   // echo $url;
 	   header("Location: ".$url); 
